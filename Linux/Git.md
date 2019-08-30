@@ -1,4 +1,4 @@
-## 一、Git上传到GitHub
+## 一、Git的远程SSH设置
 
 1、安装好Git，打开Git Bash
 
@@ -46,16 +46,115 @@ ssh -T git@github.com
 
 ![](IMG/微信截图_20190830084610.png)
 
-9、
+
+
+## 二、Git上传到GitHub
+
+1、切换到需要上传的本地文件夹。（可以右击创建，也可以通过Git命令创建）
+
+![](IMG/微信截图_20190830090132.png)
+
+2、通过命令`git init`把这个文件夹变成Git可管理的仓库
+
+```
+git init
+```
+
+![](IMG/微信截图_20190830090430.png)
+
+3、打开文件夹，可以发现多了一个`.git`文件夹。（如果看不到，是因为它默认是隐藏文件，那你就需要设置一下让隐藏文件可见。）
+
+![](IMG/微信截图_20190830090321.png)
+
+4、这时候你就可以把你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过git status来查看你当前的状态），然后通过git add把项目添加到仓库（或git add .把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。如果文件内有东西会出现红色的字，不是绿色，这不是错误。
+
+```
+git status
+```
+
+![](IMG/微信截图_20190830090743.png)
+
+4、这里提示你虽然把项目粘贴过来了，但还没有add到Git仓库上，然后我们通过git add .把刚才复制过来的项目全部添加到仓库上。
+
+```
+git add .
+```
+
+![](IMG/微信截图_20190830091325.png)
+
+6、用git commit -m "日志" 把项目提交到仓库。
+
+```
+git commit -m "Commit_logs" 
+```
+
+![](IMG/微信截图_20190830091858.png)
 
 
 
+7、在Github上创建一个Git仓库。点New repository来创建
 
+![](IMG/微信截图_20190830092122.png)
+
+8、创建项目
+
+![](IMG/微信截图_20190830092307.png)
+
+9、复制链接
+
+![](IMG/微信截图_20190830092602.png)
+
+
+
+10、在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地testapp仓库的命令行输入：
+
+```
+git remote add origin https://github.com/genghenggao/Learning_Records.git
+```
+
+![](IMG/微信截图_20190830092920.png)
+
+11、关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过：`git push -u origin master`
+
+```
+git push -u origin master
+```
+
+- 由于新建的远程仓库是空的，所以要加上-u这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了：
+
+```
+$git push origin master
+```
+
+12、输入邮箱、密码。
+
+![](IMG/微信截图_20190830093103.png)
+
+
+
+![](IMG/微信截图_20190830093208.png)
+
+13、刷新你的Github页面进入刚才新建的那个仓库里面就会发现项目已经成功上传了。
+
+![](IMG/微信截图_20190830093613.png)
+
+14、有个坑需要注意一下，就是在上面第2、8步创建远程仓库的时候，如果你勾选了Initialize this repository with a README（就是创建仓库的时候自动给你创建一个README文件），那么到了第6步你将本地仓库内容推送到远程仓库的时候就会报一个`error：failed to push some refs to https://github.com/xxx`的错。
+
+ 这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并以下:
+
+```
+git pull --rebase origin master
+```
+
+这时你再push就能成功了。
+
+## 三、常用命令
 
 
 
 参考：
 
+https://www.cnblogs.com/sdcs/p/8270029.html
+
 https://www.cnblogs.com/superjt/p/5977719.html
 
-https://www.cnblogs.com/sdcs/p/8270029.html
