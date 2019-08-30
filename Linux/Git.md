@@ -148,7 +148,31 @@ git pull --rebase origin master
 
 这时你再push就能成功了。
 
-## 三、常用命令
+
+
+## 三、更新本地Git项目到GitHub仓库
+
+1、远程仓库$ git remote add origin git@github.com:yourName/yourRepo.gitwison。yourName是你的用户名，yourRepo.gitwison是你要上传项目的仓库。
+
+2、添加你要上传的文件，git add .  .代表上传目录下所有文件，可以在git add后面加上你要添加的文件，比如git add aa.html。
+
+```
+git add .
+```
+
+3、提交项目，输入git commit -a -m "xxx"   xxx是标记谁上传。再输入git push origin master，大功告成，可以在GitHub查看项目。
+
+```
+git commit -m "Commit_logs"
+
+git push origin master
+```
+
+3、
+
+
+
+## 常用命令
 
 ```
 git add -A  #提交所有变化  
