@@ -106,7 +106,7 @@ git commit -m "Commit_logs"
 
 
 
-10、在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地testapp仓库的命令行输入：
+10、在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Typora_Notes仓库的命令行输入：
 
 ```
 git remote add origin https://github.com/genghenggao/Learning_Records.git
@@ -154,6 +154,10 @@ git pull --rebase origin master
 
 1、远程仓库$ git remote add origin git@github.com:yourName/yourRepo.gitwison。yourName是你的用户名，yourRepo.gitwison是你要上传项目的仓库。
 
+```
+git remote add origin https://github.com/genghenggao/Learning_Records.git
+```
+
 2、添加你要上传的文件，git add .  .代表上传目录下所有文件，可以在git add后面加上你要添加的文件，比如git add aa.html。
 
 ```
@@ -167,8 +171,6 @@ git commit -m "Commit_logs"
 
 git push origin master
 ```
-
-3、
 
 
 
