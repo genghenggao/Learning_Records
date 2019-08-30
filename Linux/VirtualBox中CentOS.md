@@ -1,3 +1,7 @@
+# VirtualBox中CentOS
+
+[TOC]
+
 ## 一、新建虚拟机
 
 1、创建虚拟机

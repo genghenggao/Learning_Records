@@ -1,4 +1,8 @@
-# VMware中CentOS7.6
+# Vmware中CentOS
+
+[TOC]
+
+
 
 ## 一、安装CentOS7.6
 
@@ -67,6 +71,10 @@ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ```shell
 timedatectl set-ntp yes
 ```
+
+
+
+## 四、CentOS中Java环境配置
 
 
 

@@ -1,10 +1,14 @@
-### 一、VMware Workstation下安装VMware Tools（Ubuntu系统）
+[TOC]
+
+
+
+## 一、VMware Workstation下安装VMware Tools（Ubuntu系统）
 
 参考：https://blog.csdn.net/wuzhiwuweisun/article/details/79204514
 
 
 
-### 二、VMware中Ubuntu网络设置
+## 二、VMware中Ubuntu网络设置
 
 1、VMware-->编辑tab->虚拟网络编辑器单，查看网络配置:
 
@@ -66,7 +70,7 @@ sudo apt install net-tools
 
 
 
-### 三、解决ubuntu vi编辑器上下箭头变成ABCD的问题
+## 三、解决ubuntu vi编辑器上下箭头变成ABCD的问题
 
 ```shell
 sudo apt-get remove vim-common
