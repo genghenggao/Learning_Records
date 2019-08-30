@@ -4,7 +4,7 @@
 
 2、查看是否存在密钥ssh keys（这里没有keys）
 
-```
+```shell
 ll ~/.ssh
 ```
 
@@ -40,7 +40,7 @@ ssh-keygen -t rsa -C genghenggao@outlook.com
 
 8、用`ssh -T git@github.com`测试自己是否可以连接成功了，中间有个输入需要输入yes，后面可以看到`Hi genghenggao! You've successfully authenticated, but GitHub does not provide shell access.`表示成功。
 
-```
+```shell
 ssh -T git@github.com
 ```
 
@@ -56,7 +56,7 @@ ssh -T git@github.com
 
 2、通过命令`git init`把这个文件夹变成Git可管理的仓库
 
-```
+```shell
 git init
 ```
 
@@ -68,7 +68,7 @@ git init
 
 4、这时候你就可以把你的项目粘贴到这个本地Git仓库里面（粘贴后你可以通过git status来查看你当前的状态），然后通过git add把项目添加到仓库（或git add .把该目录下的所有文件添加到仓库，注意点是用空格隔开的）。在这个过程中你其实可以一直使用git status来查看你当前的状态。如果文件内有东西会出现红色的字，不是绿色，这不是错误。
 
-```
+```shell
 git status
 ```
 
@@ -76,7 +76,7 @@ git status
 
 4、这里提示你虽然把项目粘贴过来了，但还没有add到Git仓库上，然后我们通过git add .把刚才复制过来的项目全部添加到仓库上。
 
-```
+```shell
 git add .
 ```
 
@@ -84,7 +84,7 @@ git add .
 
 6、用git commit -m "日志" 把项目提交到仓库。
 
-```
+```shell
 git commit -m "Commit_logs" 
 ```
 
@@ -108,7 +108,7 @@ git commit -m "Commit_logs"
 
 10、在Github上创建好Git仓库之后我们就可以和本地仓库进行关联了，根据创建好的Git仓库页面的提示，可以在本地Typora_Notes仓库的命令行输入：
 
-```
+```shell
 git remote add origin https://github.com/genghenggao/Learning_Records.git
 ```
 
@@ -116,13 +116,13 @@ git remote add origin https://github.com/genghenggao/Learning_Records.git
 
 11、关联好之后我们就可以把本地库的所有内容推送到远程仓库（也就是Github）上了，通过：`git push -u origin master`
 
-```
+```shell
 git push -u origin master
 ```
 
 - 由于新建的远程仓库是空的，所以要加上-u这个参数，等远程仓库里面有了内容之后，下次再从本地库上传内容的时候只需下面这样就可以了：
 
-```
+```shell
 $git push origin master
 ```
 
@@ -142,7 +142,7 @@ $git push origin master
 
  这是由于你新创建的那个仓库里面的README文件不在本地仓库目录中，这时我们可以通过以下命令先将内容合并以下:
 
-```
+```shell
 git pull --rebase origin master
 ```
 
@@ -154,19 +154,19 @@ git pull --rebase origin master
 
 1、远程仓库$ git remote add origin git@github.com:yourName/yourRepo.gitwison。yourName是你的用户名，yourRepo.gitwison是你要上传项目的仓库。
 
-```
+```shell
 git remote add origin https://github.com/genghenggao/Learning_Records.git
 ```
 
 2、添加你要上传的文件，git add .  .代表上传目录下所有文件，可以在git add后面加上你要添加的文件，比如git add aa.html。
 
-```
+```shell
 git add .
 ```
 
 3、提交项目，输入git commit -a -m "xxx"   xxx是标记谁上传。再输入git push origin master，大功告成，可以在GitHub查看项目。
 
-```
+```shell
 git commit -m "Commit_logs"
 
 git push origin master
@@ -176,10 +176,24 @@ git push origin master
 
 ## 常用命令
 
-```
-git add -A  #提交所有变化  
-git add -u  #提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)  
-git add .   #提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件  
+```shell
+#提交所有变化  
+git add -A 
+
+#提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+git add -u
+
+#提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+git add . 
+
+#查看状态
+git status  
+
+#提交，把本机缓存中的内容提交到本机的 HEAD 里面
+git commit -m "注释"     
+
+#把本地的 commit(提交) push 到远程服务器上， origin 也就是之前 git remote add origin 那个命令里面的 origin，origin 替代了服务器仓库地址：git push git@github.com:winter1991/helloworld.git master
+git push origin master   
 ```
 
 
