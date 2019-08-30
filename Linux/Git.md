@@ -1,7 +1,6 @@
 # Git
 
-[TOC]
-[一、Git的远程SSH设置](一、Git的远程SSH设置)
+[1.mulu 1](##一、Git的远程SSH设置)
 
 
 ## 一、Git的远程SSH设置
