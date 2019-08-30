@@ -1,8 +1,6 @@
 # Git
 
-[TOC]
-
-[三、更新本地Git项目到GitHub仓库](#三、更新本地Git项目到GitHub仓库)
+[三、更新本地Git项目到GitHub仓库](#test)
 
 
 
@@ -158,7 +156,7 @@ git pull --rebase origin master
 
 
 
-## 三、更新本地Git项目到GitHub仓库
+## <span id="test">三、更新本地Git项目到GitHub仓库</span>
 
 1、远程仓库$ git remote add origin git@github.com:yourName/yourRepo.gitwison。yourName是你的用户名，yourRepo.gitwison是你要上传项目的仓库。
 
