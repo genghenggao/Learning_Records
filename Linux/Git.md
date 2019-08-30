@@ -2,7 +2,7 @@
 
 [TOC]
 
-[三、更新本地Git项目到GitHub仓库](##三、更新本地Git项目到GitHub仓库)
+[三、更新本地Git项目到GitHub仓库](#三、更新本地Git项目到GitHub仓库)
 
 
 
