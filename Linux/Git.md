@@ -1,11 +1,5 @@
 # Git
 
-[二、Git上传到GitHub](#二、Git上传到GitHub)
-
-[三、更新本地Git项目到GitHub仓库](#test)
-
-
-
 ## 一、Git的远程SSH设置
 
 1、安装好Git，打开Git Bash
@@ -56,7 +50,7 @@ ssh -T git@github.com
 
 
 
-# 二、Git上传到GitHub
+## 二、Git上传到GitHub
 
 1、切换到需要上传的本地文件夹。（可以右击创建，也可以通过Git命令创建）
 
@@ -158,7 +152,7 @@ git pull --rebase origin master
 
 
 
-## <span id="test">三、更新本地Git项目到GitHub仓库</span>
+## 三、更新本地Git项目到GitHub仓库
 
 1、远程仓库$ git remote add origin git@github.com:yourName/yourRepo.gitwison。yourName是你的用户名，yourRepo.gitwison是你要上传项目的仓库。
 

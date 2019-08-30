@@ -74,13 +74,187 @@ timedatectl set-ntp yes
 
 
 
-## 四、CentOS中Java环境配置
+## 四、克隆虚拟机
+
+1、被克隆的虚拟机处于关闭状态
+
+2、右击被克隆的虚拟机-->管理-->克隆
+
+![](IMG/微信截图_20190830151112.png)
+
+![](IMG/微信截图_20190830151140.png)
+
+![](IMG/微信截图_20190830151206.png)
+
+![](IMG/微信截图_20190830151259.png)
+
+
+
+## 五、修改虚拟机配置
+
+1、修改网卡配置（root权限）
+
+```shell
+vi /etc/sysconfig/network-scripts/ifcfg-ens33
+```
+
+![](IMG/微信截图_20190830151902.png)
+
+- 删除UUID信息
+
+- 修改IPADDR信息为“172.25.10.112”
+
+- 并保存退出。
+
+2、修改完IPADDR后**再执行  service network restart**
+
+```shell
+service network restart
+```
+
+3、删除部分文件，查看。
+
+```
+ll /etc/udev/rules.d/
+```
+
+![](IMG/微信截图_20190830152757.png)
+
+4、切换到目录，输入命令 “rm -rf 70-persistent-net.rules”删除文件
+
+```
+cd /etc/udev/rules.d
+
+rm -rf 70-persistent-net.rules
+```
+
+5、关机，设置MAC地址
+
+5.1、编辑虚拟机设置
+
+![](IMG/微信截图_20190830161106.png)
+
+5.2、选择NAT模式，点击高级
+
+![](IMG/微信截图_20190830160939.png)
+
+5.3、点击生成-->确定
+
+![](IMG/微信截图_20190830160804.png)
+
+
+
+6、开机，测试互ping
+
+```shell
+#被复制机器上
+ping 192.168.55.113
+
+#复制的新机器上
+ping 192.168.55.111
+```
+
+![](IMG/微信截图_20190830153128.png)
+
+6、CentOS7修改hostname
+
+```shell
+[root@slave2 hduser]# hostnamectl set-hostname slave3
+[root@slave2 hduser]# hostname 
+slave3
+[root@slave2 hduser]# vim /etc/hosts
+[root@slave2 hduser]# cat /etc/hosts
+```
+
+- 给127.0.0.1添加hostname
+
+![](IMG/微信截图_20190830153400.png)
 
 
 
 
 
+参考：
+
+https://blog.csdn.net/mijichui2153/article/details/80918285
 
 
 
+## 六、CentOS中Java环境配置
 
+- Linux CentOS7.6自带jdk环境修改变量
+
+1、查看
+
+```shell
+java -version
+```
+
+![](IMG/微信截图_20190830143243.png)
+
+2、查看默认jdk的位置
+
+```shell
+ which java
+```
+
+![](IMG/微信截图_20190830143935.png)
+
+3、继续追踪
+
+```shell
+ls -lrt /usr/bin/java
+```
+
+![](IMG/微信截图_20190830144037.png)
+
+4、继续追踪
+
+```shell
+ls -lrt /etc/alternatives/java
+```
+
+![](IMG/微信截图_20190830144104.png)
+
+5、查看jdk，有俩个版本1.7、1.8
+
+```shell
+ll /usr/lib/jvm
+```
+
+![](IMG/微信截图_20190830144155.png)
+
+找到了初始的jdk1.7和jdk1.8位置（即系统当前jdk），而我们需要的jdk1.8版本的位置，即`jre-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64`，记录下位置：
+
+`/usr/lib/jvm/jre-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64`
+
+6、编辑环境变量（root权限）
+
+```shell
+vim /etc/profile
+```
+
+7、在文本最后添加
+
+```shell
+#java
+export JAVA_HOME=/usr/lib/jvm/jre-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
+export PATH=$PATH:$JAVA_HOME/bin
+export CLASSPATH=.:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib/dt.jar
+```
+
+![](IMG/微信截图_20190830145250.png)
+
+8、按esc输入:wq保存并退出
+
+9、使环境变量生效
+
+```shell
+source /etc/profile 
+```
+
+
+
+参考：
+
+https://www.cnblogs.com/zhenxiqia/p/9049290.html
