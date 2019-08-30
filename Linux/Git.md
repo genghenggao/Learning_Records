@@ -1,5 +1,7 @@
 # Git
 
+[二、Git上传到GitHub](#二、Git上传到GitHub)
+
 [三、更新本地Git项目到GitHub仓库](#test)
 
 
@@ -54,7 +56,7 @@ ssh -T git@github.com
 
 
 
-## 二、Git上传到GitHub
+# 二、Git上传到GitHub
 
 1、切换到需要上传的本地文件夹。（可以右击创建，也可以通过Git命令创建）
 
