@@ -1,6 +1,10 @@
 # Git
 
-[1.mulu 1](##一、Git的远程SSH设置)
+
+
+[二、Git上传到GitHub](##二、Git上传到GitHub)
+
+
 
 
 ## 一、Git的远程SSH设置
