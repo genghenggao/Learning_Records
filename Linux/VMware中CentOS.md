@@ -102,7 +102,7 @@ vi /etc/sysconfig/network-scripts/ifcfg-ens33
 
 - 删除UUID信息
 
-- 修改IPADDR信息为“172.25.10.112”
+- 修改IPADDR信息为“192.168.55.113”
 
 - 并保存退出。
 
