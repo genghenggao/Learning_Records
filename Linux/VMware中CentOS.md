@@ -258,3 +258,50 @@ source /etc/profile
 参考：
 
 https://www.cnblogs.com/zhenxiqia/p/9049290.html
+
+
+
+## 七、CentOS7 配置免密码登录
+
+- 4台主机（首先设置好映射`vim /etc/hosts`）
+  - 192.168.55.110 master
+  - 192.168.55.111 slave1
+  - 192.168.55.112 slave2
+  - 192.168.55.113 slave3
+
+![](IMG/微信截图_20190831085041.png)
+
+1、四台主机检查 ~/.ssh 文件夹（这里以master节点为例）
+
+```shell
+#查看~/.ssh 文件夹
+ll ~/.ssh
+```
+
+2、没有 ~/.ssh 文件夹则新建。输入`ssh-keygen -t rsa`，一路回车。
+
+```shell
+#新建
+ssh-keygen -t rsa
+```
+
+3、查看  ~/.ssh 目录，会发现它下面生成了两个 id_rsa  ， id_rsa.pub文件
+
+
+
+4、在master上将公钥（id_rsa.pub）拷贝到其它节点，包括本机。
+
+```shell
+ssh-copy-id master
+
+ssh-copy-id slave1
+
+ssh-copy-id slave2
+
+ssh-copy-id slave3
+```
+
+5、在四台机器重复上述步骤即可。
+
+
+
