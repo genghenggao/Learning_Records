@@ -182,7 +182,7 @@ https://blog.csdn.net/mijichui2153/article/details/80918285
 
 ## 六、CentOS中Java环境配置
 
-- Linux CentOS7.6自带jdk环境修改变量
+### 6.1、CentOS7.6自带jdk环境修改变量
 
 1、查看
 
@@ -258,6 +258,203 @@ source /etc/profile
 参考：
 
 https://www.cnblogs.com/zhenxiqia/p/9049290.html
+
+
+
+### 6.2、CentOS7.6安装自定义JDK
+
+#### 一、删除自带的OpneJDK以及相关的java文件
+
+1、查看系统自带的OpenJDK版本信息
+
+```shell
+java -version
+```
+
+![](IMG/微信截图_20190831092801.png)
+
+2、确认删除 centos 系统自带的 jdk
+
+```shell
+rpm -qa | grep java
+```
+
+- 命令说明：
+
+  - rpm 　　管理套件    
+
+  - -qa 　　 使用询问模式，查询所有套件
+
+  - grep　　查找文件里符合条件的字符串
+
+  - java 　　查找包含java字符串的文件
+
+![](IMG/微信截图_20190831093214.png)
+
+以上文件中，下面这四个可以删除。（名称里有 `openjdk` 的要删除）
+
+```shell
+java-1.8.0-openjdk-headless-1.8.0.181-7.b13.el7.x86_64
+java-1.7.0-openjdk-1.7.0.191-2.6.15.5.el7.x86_64
+java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
+java-1.7.0-openjdk-headless-1.7.0.191-2.6.15.5.el7.x86_64
+```
+
+3、使用root权限删除
+
+```shell
+[hduser@master ~]$ su
+Password: 
+ABRT has detected 1 problem(s). For more info run: abrt-cli list --since 1567148361
+[root@master hduser]# rpm -e --nodeps java-1.8.0-openjdk-headless-1.8.0.181-7.b13.el7.x86_64
+[root@master hduser]# rpm -e --nodeps java-1.7.0-openjdk-1.7.0.191-2.6.15.5.el7.x86_64
+[root@master hduser]# rpm -e --nodeps java-1.8.0-openjdk-1.8.0.181-7.b13.el7.x86_64
+[root@master hduser]# rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.191-2.6.15.5.el7.x86_64
+```
+
+![](IMG/微信截图_20190831094120.png)
+
+- 命令介绍：
+  - rpm 　　　　管理套件  
+  - -e　　　　　删除指定的套件
+  - --nodeps　　不验证套件档的相互关联性
+
+4、检查是否已经删除成功
+
+```shell
+java -version
+```
+
+![](IMG/微信截图_20190831094150.png)
+
+已经删除成功了。
+
+
+
+#### 二、下载最新稳定JDK
+
+**【注意】:JDK安装在哪个用户下，就是给哪个用户使用**
+
+- 下载地址为
+
+　　当前最新版本下载地址：http://www.oracle.com/technetwork/java/javase/downloads/index.html
+
+　　历史版本下载地址：http://www.oracle.com/technetwork/java/javase/archive-139210.html  
+
+1、下载jdk，选择版本。
+
+![](IMG/微信截图_20190831101012.png)
+
+
+
+2、选择
+
+![](IMG/微信截图_20190831101110.png)
+
+3、通过终端在/usr/local目录下新建java文件夹，命令行：
+
+```shell
+mkdir /usr/local/java
+```
+
+4、给文件夹赋予权限（为了能够从Windows下载传输到VMware中CentOS机器上）
+
+```shell
+chmod -R 777 /usr/local/java
+```
+
+![](IMG/微信截图_20190831101602.png)
+
+
+
+5、进入java目录
+
+```shell
+cd /usr/local/java
+```
+
+6、解压压缩包
+
+```shell
+tar -zxvf jdk-8u212-linux-x64.tar.gz
+```
+
+- 命令介绍：
+  - tar	备份文件
+  - -zxvf　　　　　
+    - -z	通过gzip指令处理备份文件
+    - -x 	从备份文件中还原文件
+    - -v	显示指令执行过程
+    - -f	指定备份文件
+    - jdk-8u212-linux-x64.tar.gz	文件名
+
+![](IMG/微信截图_20190831102131.png)
+
+7、然后可以把压缩包删除
+
+```shell
+rm -rf jdk-8u212-linux-x64.tar.gz
+```
+
+- 命令解释：
+  - rm　　　　删除文件或目录
+  - -rf　　　　  强制删除文件或目录
+
+![](IMG/微信截图_20190831102422.png)
+
+
+
+#### 三、配置JDK变量
+
+1、编辑全局变量
+
+```
+vim /etc/profile
+```
+
+- 按`i`进入插入状态：
+
+- 在文本的最后一行粘贴如下
+
+```shell
+#java enviroment
+export JAVA_HOME=/usr/local/java/jdk1.8.0_212
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+export PATH=$PATH:$JAVA_HOME/bin
+```
+
+![](IMG/微信截图_20190831110340.png)
+
+2、保存，退出。esc-->:wq
+
+3、使配置生效
+
+```shell
+source /etc/profile
+```
+
+4、测试是否配置成功
+
+```shell
+[root@master hduser]# java -version
+java version "1.8.0_212"
+Java(TM) SE Runtime Environment (build 1.8.0_212-b10)
+Java HotSpot(TM) 64-Bit Server VM (build 25.212-b10, mixed mode)
+```
+
+![](IMG/微信截图_20190831110837.png)
+
+```shell
+javac
+```
+
+![](IMG/微信截图_20190831110932.png)
+
+
+
+CentOS7.6中JDK安装参考：
+
+https://www.cnblogs.com/116970u/p/10400436.html
 
 
 
