@@ -93,6 +93,30 @@ master
 
 ## 四.关闭防火墙
 
+1、切换到root账号下，检查防火墙状态
+
+```shell
+[root@master hduser]# firewall-cmd --state
+```
+
+2、需要关闭防火墙
+
+```shell
+[root@master hduser]# systemctl stop firewalld.service
+```
+
+- 再次检查防火墙状态,已经是not running
+
+![](IMG/微信截图_20190901141958.png)
+
+ 3、设置主节点上禁止开机启动防火墙
+
+```shell
+[root@master hduser]# systemctl disable firewalld.service
+```
+
+![](IMG/微信截图_20190901142516.png)
+
 
 
 ## 五.下载、解压 Hadoop
@@ -172,7 +196,7 @@ vim /usr/local/hadoop/hadoop-3.1.2/etc/hadoop/core-site.xml
 
 - 添加如下信息
 
-```shell
+```properties
 <configuration>
     <!-- 指定 namenode 的通信地址 默认 8020 端口 -->
     <property>
@@ -198,7 +222,7 @@ vim /usr/local/hadoop/hadoop-3.1.2/etc/hadoop/hdfs-site.xml
 
 - 添加如下信息
 
-```shell
+```properties
 <configuration>
 
     <!-- namenode 上存储 hdfs 名字空间元数据-->
@@ -223,6 +247,59 @@ vim /usr/local/hadoop/hadoop-3.1.2/etc/hadoop/hdfs-site.xml
 ```
 
 ![](IMG/微信截图_20190831164911.png)
+
+- 后续补充：还需要添加如下信息（解决Web访问不了50070）
+
+  ```properties
+  <?xml version="1.0" encoding="UTF-8"?>
+  <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+  <!--
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+      http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. See accompanying LICENSE file.
+  -->
+  
+  <!-- Put site-specific property overrides in this file. -->
+  
+  <configuration>
+      
+      <!-- namenode 上存储 hdfs 名字空间元数据-->
+      <property>
+          <name>dfs.namenode.name.dir</name>
+          <value>/usr/local/hadoop/hadoop-3.1.2/namenode</value>
+      </property>
+  
+      <!-- datanode 上数据块的物理存储位置-->  
+      <property>
+          <name>dfs.datanode.data.dir</name>
+          <value>/usr/local/hadoop/hadoop-3.1.2/datanode</value>
+      </property>
+  
+      <!-- 设置 hdfs blocks副本备份数量 -->
+      <property>
+          <name>dfs.replication</name>
+          <value>1</value>
+      </property>
+  	
+  	<!-- 设置访问端口号 -->
+  	<property>
+         <name>dfs.http.address</name>
+         <value>0.0.0.0:50070</value>
+      </property>
+  	
+  
+  </configuration>
+  ```
+
+  ![](IMG/微信截图_20190901154545.png)
 
 ### 6.4、配置`mapred-site.xml
 
@@ -304,7 +381,7 @@ slave2
 slave3
 ```
 
-![](IMG/微信截图_20190831165817.png)
+![](IMG/微信截图_20190901144510.png)
 
 ### 6.7、配置`start-dfs.sh` 和 `stop-dfs.sh`
 
@@ -444,6 +521,8 @@ source /etc/profile
 
 ```shell
 [root@master hduser]# cd /usr/local/hadoop/hadoop-3.1.2/bin
+
+# 格式化HDFS [只有首次部署才可使用]【谨慎操作，只在master上操作】
 [root@master bin]# hdfs namenode -format
 ```
 
@@ -459,7 +538,7 @@ source /etc/profile
 start-all.sh
 ```
 
-
+![](IMG/微信截图_20190901094014.png)
 
 ### 8.3 查看 hadoop 服务是否启动成功
 
@@ -467,15 +546,13 @@ start-all.sh
 
 ```shell
 [root@master hduser]# jps
-91074 ResourceManager
-80034 Jps
-70485 DataNode
-73608 SecondaryNameNode
-74283 NodeManager
-70015 NameNode
+112400 NameNode
+113216 ResourceManager
+114153 Jps
+112844 SecondaryNameNode
 ```
 
-![](IMG/微信截图_20190831221751.png)
+![](IMG/微信截图_20190901145157.png)
 
 - 查看 `slave1` 节点
 
@@ -552,7 +629,7 @@ hadoop dfs -mkdir /input
 hadoop dfs -ls input
 
 #将 test.txt 上传到 hdfs 中
-hadoop fs -put /home/binguner/Desktop/test.txt /input
+hadoop fs -put /home/hduser/Desktop/test.txt /input
 
 #将 hsdf 中的 test.txt 文件保存到本地桌面文件夹
 hadoop dfs -get /input/test.txt /home/binguenr/Desktop
@@ -626,7 +703,42 @@ INFO mapreduce.Job: Job job_1567256091422_0001 completed successfully
 
 ![](IMG/微信截图_20190831224620.png)
 
+### 9.5 Web界面访问
 
+#### 一、访问50070端口
+
+- 访问：http://localhost:50070/dfshealth.html#tab-overview
+- 在虚拟机CentOS中访问
+
+![](IMG/微信截图_20190901145716.png)
+
+- 或者访问：http://master:50070/dfshealth.html#tab-overview
+
+- 虚拟机CentOS和主机Windows都可以
+
+![](IMG/微信截图_20190901145808.png)
+
+- 或者访问：http://192.168.55.110:50070/dfshealth.html#tab-overview
+
+- 虚拟机CentOS和主机Windows都可以
+
+![](IMG/微信截图_20190901150055.png)
+
+- 查看DataNode
+
+  ![](IMG/微信截图_20190901155923.png)
+
+#### 二、访问8088端口
+
+- 同样有50070的几种访问方式
+
+- 访问：http://master:8088/cluster
+
+  ![](IMG/微信截图_20190901150403.png)
+
+- 点击Nodes查看
+
+  ![](IMG/微信截图_20190901150715.png)
 
 
 
