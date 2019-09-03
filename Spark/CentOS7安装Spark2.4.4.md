@@ -357,7 +357,7 @@ export SPARK_EXECUTOR_MEMORY=1G
 
 ##### 3、master节点查看
 
-![](IMG/微信截图_20190903094701.png)
+![](IMG/微信截图_20190903160720.png)
 
 ##### 4、slave节点查看
 
