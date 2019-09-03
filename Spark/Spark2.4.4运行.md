@@ -494,7 +494,7 @@
   2019-09-03 16:25:21,451 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-c5784076-6924-441a-967e-2429d9e38680
   ```
 
-- Web端查看，输入http://master:8088/cluster/apps或者
+- Web端查看，输入[http://master:8088](http://master:8088/)或者[http://192.168.55.110:8088](http://192.168.55.110:8088/)
 
   ![](IMG/微信截图_20190903163111.png)
 
@@ -505,3 +505,69 @@
 参考：
 
 https://blog.csdn.net/pucao_cug/article/details/72453382
+
+
+
+
+
+## 四、本地运行Spark-Shell
+
+1、切换到路径`/usr/local/spark-2.4.4-bin-hadoop2.7/`
+
+```shell
+[root@master local]# cd /usr/local/spark-2.4.4-bin-hadoop2.7/
+```
+
+2、运行spark-shell
+
+```shell
+[root@master spark-2.4.4-bin-hadoop2.7]# ./bin/spark-shell
+```
+
+![](IMG/微信截图_20190903202027.png)
+
+3、运行词频统计
+
+- 在spark-2.4.4-bin-hadoop2.7目录下新建input文件夹，写俩个test.txt、test1.txt文件
+
+  ![](IMG/微信截图_20190903202512.png)
+
+  - test.txt内容
+
+  ```
+  Hello World
+  Hello Spark
+  Hello Scala
+  ```
+
+  - test1.txt内容
+
+  ```
+  Hello Henggao
+  ```
+
+- 运行测试sc.master查看当前运行模式
+
+```shell
+scala> sc.master
+res7: String = local[*]
+
+#使用绝对路径
+scala> sc.textFile("file:/usr/local/spark-2.4.4-bin-hadoop2.7/input").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).collect
+```
+
+- 运行结果
+
+  ```shell
+  res8: Array[(String, Int)] = Array((Hello,4), (World,1), (Scala,1), (Spark,1), (Henggao,1))
+  ```
+
+![](IMG/微信截图_20190903201757.png)
+
+```shell
+#使用相对路径
+scala> sc.textFile("input").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).collect
+```
+
+![](IMG/微信截图_20190903202322.png)
+
