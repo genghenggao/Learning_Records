@@ -45,6 +45,8 @@ master
 
 ### 2.2、 配置集群间 ssh 无密钥登陆
 
+#### 第一种方式：
+
 **1）** 首先在 master 上生成 ssh 公钥
 
 ```shell
@@ -84,6 +86,48 @@ master
 ```
 
 ![](IMG/微信截图_20190831214323.png)
+
+
+
+#### 第二种方式
+
+**1）** 首先在 master 上生成 ssh 公钥
+
+```shell
+[root@master hduser]# ssh-keygen -t rsa
+```
+
+**2）**然后连续按 3 个回车即可。
+
+**3）**复制
+
+```
+[root@master hduser]# ssh-copy-id -i ~/.ssh/id_rsa.pub master@root
+[root@master hduser]# ssh-copy-id -i ~/.ssh/id_rsa.pub slave1@root
+[root@master hduser]# ssh-copy-id -i ~/.ssh/id_rsa.pub slave2@root
+[root@master hduser]# ssh-copy-id -i ~/.ssh/id_rsa.pub slave3@root
+```
+
+
+
+#### 第三种方式
+
+**1）** 首先在 master 上生成 ssh 公钥
+
+```shell
+[root@master hduser]# ssh-keygen -t rsa
+```
+
+**2）**然后连续按 3 个回车即可。
+
+**3）**复制
+
+```shell
+[root@master hduser]# ssh-copy-id master
+[root@master hduser]# ssh-copy-id slave1
+[root@master hduser]# ssh-copy-id slave2
+[root@master hduser]# ssh-copy-id slave3
+```
 
 
 
@@ -366,6 +410,48 @@ vim /usr/local/hadoop/hadoop-3.1.2/etc/hadoop/yarn-site.xml
 
 ![](IMG/微信截图_20190831165425.png)
 
+- 后续补充：还需要添加如下信息（解决问题：2.5 GB of 2.1 GB virtual memory used. Killing container）
+
+- ```properties
+  <?xml version="1.0"?>
+  <!--
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+  
+      http://www.apache.org/licenses/LICENSE-2.0
+  
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License. See accompanying LICENSE file.
+  -->
+  <configuration>
+  <!-- Site specific YARN configuration properties -->
+      <!-- 指定ResourceManager的地址 -->
+  	<property>
+  		<name>yarn.resourcemanager.hostname</name>
+  		<value>master</value>
+  	</property>
+  
+      <!-- reducer取数据的方式是mapreduce_shuffle -->  
+  	<property>
+  		<name>yarn.nodemanager.aux-services</name>
+  		<value>mapreduce_shuffle</value>
+  	</property>
+  	
+  	<!-- 默认的虚拟内存和物理内存比例是2.1，现在改为2.9 --> 
+  	<property>
+  		<name>yarn.nodemanager.vmem-pmem-ratio</name>
+  		<value>2.9</value>
+  	</property>
+  
+  </configuration>
+  ```
+
+  ![](IMG/微信截图_20190902151128.png)
+
 ### 6.6、配置workers
 
 ```shell
@@ -626,19 +712,19 @@ hadoop dfs -ls -R /
 hadoop dfs -mkdir /input
 
 #列出 hsfs 名为 input 的文件夹中的文件
-hadoop dfs -ls input
+hadoop dfs -ls /input
 
 #将 test.txt 上传到 hdfs 中
 hadoop fs -put /home/hduser/Desktop/test.txt /input
 
 #将 hsdf 中的 test.txt 文件保存到本地桌面文件夹
-hadoop dfs -get /input/test.txt /home/binguenr/Desktop
+hadoop dfs -get /input/test.txt /home/hduser/Desktop
 
 #删除 hdfs 上的 test.txt 文件
 hadoop dfs -rmr /input/test.txt
 
 #查看 hdfs 下 input 文件夹中的内容
-hadoop fs -cat input/*
+hadoop fs -cat /input/*
 
 #进入安全模式
 hadoop dfsadmin –safemode enter
