@@ -571,3 +571,9 @@ scala> sc.textFile("input").flatMap(_.split(" ")).map((_,1)).reduceByKey(_+_).co
 
 ![](IMG/微信截图_20190903202322.png)
 
+- textFile("input")：读取本地input文件夹数据；
+- .flatMap(_.split(" "))_：压平操作，按照空格分隔符将一行数据映射成一个个单词；
+- _.map((_,1))：对每一个元素操作，将单词映射为元组；
+- .reduceByKey(_+_)：按照key将值进行聚合，相加；
+- .collect：将数据收集到Driver端展示。
+
