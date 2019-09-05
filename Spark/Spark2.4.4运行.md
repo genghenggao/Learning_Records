@@ -18,83 +18,113 @@
 
 - 命令执行后，spark示例开始执行
 
-![](IMG/微信截图_20190903145008.png)
+![](IMG/微信截图_20190905083000.png)
 
 -  执行结果用红框标出来
 
-![](IMG/微信截图_20190903145118.png)
+![](IMG/微信截图_20190905083301.png)
 
 - 完整的控制台输出是：
 
   ```shell
-  [root@master spark-2.4.4-bin-hadoop2.7]# ./bin/spark-submit  --class   org.apache.spark.examples.SparkPi  --master   local  examples/jars/spark-examples_2.11-2.4.4.jar 
-  19/09/03 14:48:14 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-  Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
-  19/09/03 14:48:15 INFO SparkContext: Running Spark version 2.4.4
-  19/09/03 14:48:15 INFO SparkContext: Submitted application: Spark Pi
-  19/09/03 14:48:15 INFO SecurityManager: Changing view acls to: root
-  19/09/03 14:48:15 INFO SecurityManager: Changing modify acls to: root
-  19/09/03 14:48:15 INFO SecurityManager: Changing view acls groups to: 
-  19/09/03 14:48:15 INFO SecurityManager: Changing modify acls groups to: 
-  19/09/03 14:48:15 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
-  19/09/03 14:48:17 INFO Utils: Successfully started service 'sparkDriver' on port 37197.
-  19/09/03 14:48:17 INFO SparkEnv: Registering MapOutputTracker
-  19/09/03 14:48:17 INFO SparkEnv: Registering BlockManagerMaster
-  19/09/03 14:48:17 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
-  19/09/03 14:48:17 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
-  19/09/03 14:48:17 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-a8980b3b-a6b1-4f41-a507-32df99c68d92
-  19/09/03 14:48:17 INFO MemoryStore: MemoryStore started with capacity 413.9 MB
-  19/09/03 14:48:17 INFO SparkEnv: Registering OutputCommitCoordinator
-  19/09/03 14:48:18 INFO Utils: Successfully started service 'SparkUI' on port 4040.
-  19/09/03 14:48:18 INFO SparkUI: Bound SparkUI to 0.0.0.0, and started at http://master:4040
-  19/09/03 14:48:18 INFO SparkContext: Added JAR file:/usr/local/spark-2.4.4-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.4.4.jar at spark://master:37197/jars/spark-examples_2.11-2.4.4.jar with timestamp 1567493298234
-  19/09/03 14:48:18 INFO Executor: Starting executor ID driver on host localhost
-  19/09/03 14:48:19 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 45933.
-  19/09/03 14:48:19 INFO NettyBlockTransferService: Server created on master:45933
-  19/09/03 14:48:19 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
-  19/09/03 14:48:19 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, master, 45933, None)
-  19/09/03 14:48:19 INFO BlockManagerMasterEndpoint: Registering block manager master:45933 with 413.9 MB RAM, BlockManagerId(driver, master, 45933, None)
-  19/09/03 14:48:19 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, master, 45933, None)
-  19/09/03 14:48:19 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, master, 45933, None)
-  19/09/03 14:48:22 INFO SparkContext: Starting job: reduce at SparkPi.scala:38
-  19/09/03 14:48:23 INFO DAGScheduler: Got job 0 (reduce at SparkPi.scala:38) with 2 output partitions
-  19/09/03 14:48:23 INFO DAGScheduler: Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
-  19/09/03 14:48:23 INFO DAGScheduler: Parents of final stage: List()
-  19/09/03 14:48:23 INFO DAGScheduler: Missing parents: List()
-  19/09/03 14:48:23 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
-  19/09/03 14:48:23 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1936.0 B, free 413.9 MB)
-  19/09/03 14:48:23 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1256.0 B, free 413.9 MB)
-  19/09/03 14:48:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on master:45933 (size: 1256.0 B, free: 413.9 MB)
-  19/09/03 14:48:23 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1161
-  19/09/03 14:48:23 INFO DAGScheduler: Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34) (first 15 tasks are for partitions Vector(0, 1))
-  19/09/03 14:48:23 INFO TaskSchedulerImpl: Adding task set 0.0 with 2 tasks
-  19/09/03 14:48:23 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, PROCESS_LOCAL, 7866 bytes)
-  19/09/03 14:48:23 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
-  19/09/03 14:48:23 INFO Executor: Fetching spark://master:37197/jars/spark-examples_2.11-2.4.4.jar with timestamp 1567493298234
-  19/09/03 14:48:24 INFO TransportClientFactory: Successfully created connection to master/192.168.55.110:37197 after 594 ms (0 ms spent in bootstraps)
-  19/09/03 14:48:24 INFO Utils: Fetching spark://master:37197/jars/spark-examples_2.11-2.4.4.jar to /tmp/spark-3bf88000-8558-4c2f-ad66-fe2ed33cb972/userFiles-2d4fb48c-742c-42a2-81c3-2adc24c6d102/fetchFileTemp8996641018890533561.tmp
-  19/09/03 14:48:26 INFO Executor: Adding file:/tmp/spark-3bf88000-8558-4c2f-ad66-fe2ed33cb972/userFiles-2d4fb48c-742c-42a2-81c3-2adc24c6d102/spark-examples_2.11-2.4.4.jar to class loader
-  19/09/03 14:48:26 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 867 bytes result sent to driver
-  19/09/03 14:48:26 INFO TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, executor driver, partition 1, PROCESS_LOCAL, 7866 bytes)
-  19/09/03 14:48:26 INFO Executor: Running task 1.0 in stage 0.0 (TID 1)
-  19/09/03 14:48:26 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 2796 ms on localhost (executor driver) (1/2)
-  19/09/03 14:48:26 INFO Executor: Finished task 1.0 in stage 0.0 (TID 1). 867 bytes result sent to driver
-  19/09/03 14:48:26 INFO TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 367 ms on localhost (executor driver) (2/2)
-  19/09/03 14:48:26 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
-  19/09/03 14:48:26 INFO DAGScheduler: ResultStage 0 (reduce at SparkPi.scala:38) finished in 3.557 s
-  19/09/03 14:48:26 INFO DAGScheduler: Job 0 finished: reduce at SparkPi.scala:38, took 3.743177 s
-  Pi is roughly 3.1411757058785295
-  19/09/03 14:48:26 INFO SparkUI: Stopped Spark web UI at http://master:4040
-  19/09/03 14:48:26 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
-  19/09/03 14:48:26 INFO MemoryStore: MemoryStore cleared
-  19/09/03 14:48:26 INFO BlockManager: BlockManager stopped
-  19/09/03 14:48:26 INFO BlockManagerMaster: BlockManagerMaster stopped
-  19/09/03 14:48:26 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
-  19/09/03 14:48:26 INFO SparkContext: Successfully stopped SparkContext
-  19/09/03 14:48:26 INFO ShutdownHookManager: Shutdown hook called
-  19/09/03 14:48:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-5ed9dc1c-2651-4393-bc60-31f42c4b21d3
-  19/09/03 14:48:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-3bf88000-8558-4c2f-ad66-fe2ed33cb972
-  
+  [root@master sbin]# cd /usr/local/spark-2.4.4-bin-hadoop2.7
+  [root@master spark-2.4.4-bin-hadoop2.7]# ./bin/spark-submit  --class   org.apache.spark.examples.SparkPi  --master   local  examples/jars/spark-examples_2.11-2.4.4.jar
+  2019-09-05 08:28:50,485 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+  2019-09-05 08:28:50,894 INFO spark.SparkContext: Running Spark version 2.4.4
+  2019-09-05 08:28:50,915 INFO spark.SparkContext: Submitted application: Spark Pi
+  2019-09-05 08:28:51,013 INFO spark.SecurityManager: Changing view acls to: root
+  2019-09-05 08:28:51,013 INFO spark.SecurityManager: Changing modify acls to: root
+  2019-09-05 08:28:51,013 INFO spark.SecurityManager: Changing view acls groups to: 
+  2019-09-05 08:28:51,013 INFO spark.SecurityManager: Changing modify acls groups to: 
+  2019-09-05 08:28:51,013 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+  2019-09-05 08:28:51,388 INFO util.Utils: Successfully started service 'sparkDriver' on port 39782.
+  2019-09-05 08:28:51,425 INFO spark.SparkEnv: Registering MapOutputTracker
+  2019-09-05 08:28:51,446 INFO spark.SparkEnv: Registering BlockManagerMaster
+  2019-09-05 08:28:51,448 INFO storage.BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+  2019-09-05 08:28:51,448 INFO storage.BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+  2019-09-05 08:28:51,457 INFO storage.DiskBlockManager: Created local directory at /tmp/blockmgr-c284c7cb-a377-4230-9849-a4e5451e461b
+  2019-09-05 08:28:51,472 INFO memory.MemoryStore: MemoryStore started with capacity 413.9 MB
+  2019-09-05 08:28:51,503 INFO spark.SparkEnv: Registering OutputCommitCoordinator
+  2019-09-05 08:28:51,596 INFO util.log: Logging initialized @2309ms
+  2019-09-05 08:28:51,671 INFO server.Server: jetty-9.3.z-SNAPSHOT, build timestamp: unknown, git hash: unknown
+  2019-09-05 08:28:51,686 INFO server.Server: Started @2399ms
+  2019-09-05 08:28:51,699 INFO server.AbstractConnector: Started ServerConnector@3a80515c{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+  2019-09-05 08:28:51,699 INFO util.Utils: Successfully started service 'SparkUI' on port 4040.
+  2019-09-05 08:28:51,739 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@88d6f9b{/jobs,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,739 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4d4d8fcf{/jobs/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,740 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@610db97e{/jobs/job,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,740 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3fabf088{/jobs/job/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,741 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1e392345{/stages,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,741 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@12f3afb5{/stages/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,741 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@4ced35ed{/stages/stage,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,742 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@74d7184a{/stages/stage/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,743 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@51b01960{/stages/pool,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,743 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6831d8fd{/stages/pool/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,743 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@27dc79f7{/storage,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,744 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6b85300e{/storage/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,744 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3aaf4f07{/storage/rdd,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,745 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5cbf9e9f{/storage/rdd/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,745 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@18e8473e{/environment,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,746 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@5a2f016d{/environment/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,746 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1a38ba58{/executors,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,746 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3ad394e6{/executors/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,763 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6058e535{/executors/threadDump,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,763 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@42deb43a{/executors/threadDump/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,771 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@1deb2c43{/static,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,771 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@24b52d3e{/,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,772 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@15deb1dc{/api,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,772 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@3a45c42a{/jobs/job/kill,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,772 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@36dce7ed{/stages/stage/kill,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:51,774 INFO ui.SparkUI: Bound SparkUI to 0.0.0.0, and started at http://master:4040
+  2019-09-05 08:28:51,798 INFO spark.SparkContext: Added JAR file:/usr/local/spark-2.4.4-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.4.4.jar at spark://master:39782/jars/spark-examples_2.11-2.4.4.jar with timestamp 1567643331798
+  2019-09-05 08:28:51,897 INFO executor.Executor: Starting executor ID driver on host localhost
+  2019-09-05 08:28:51,957 INFO util.Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 39117.
+  2019-09-05 08:28:51,958 INFO netty.NettyBlockTransferService: Server created on master:39117
+  2019-09-05 08:28:51,959 INFO storage.BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+  2019-09-05 08:28:51,977 INFO storage.BlockManagerMaster: Registering BlockManager BlockManagerId(driver, master, 39117, None)
+  2019-09-05 08:28:51,980 INFO storage.BlockManagerMasterEndpoint: Registering block manager master:39117 with 413.9 MB RAM, BlockManagerId(driver, master, 39117, None)
+  2019-09-05 08:28:51,983 INFO storage.BlockManagerMaster: Registered BlockManager BlockManagerId(driver, master, 39117, None)
+  2019-09-05 08:28:51,983 INFO storage.BlockManager: Initialized BlockManager: BlockManagerId(driver, master, 39117, None)
+  2019-09-05 08:28:52,083 INFO handler.ContextHandler: Started o.s.j.s.ServletContextHandler@6050462a{/metrics/json,null,AVAILABLE,@Spark}
+  2019-09-05 08:28:52,702 INFO spark.SparkContext: Starting job: reduce at SparkPi.scala:38
+  2019-09-05 08:28:52,733 INFO scheduler.DAGScheduler: Got job 0 (reduce at SparkPi.scala:38) with 2 output partitions
+  2019-09-05 08:28:52,734 INFO scheduler.DAGScheduler: Final stage: ResultStage 0 (reduce at SparkPi.scala:38)
+  2019-09-05 08:28:52,734 INFO scheduler.DAGScheduler: Parents of final stage: List()
+  2019-09-05 08:28:52,735 INFO scheduler.DAGScheduler: Missing parents: List()
+  2019-09-05 08:28:52,753 INFO scheduler.DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34), which has no missing parents
+  2019-09-05 08:28:52,909 INFO memory.MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1936.0 B, free 413.9 MB)
+  2019-09-05 08:28:52,985 INFO memory.MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1256.0 B, free 413.9 MB)
+  2019-09-05 08:28:52,990 INFO storage.BlockManagerInfo: Added broadcast_0_piece0 in memory on master:39117 (size: 1256.0 B, free: 413.9 MB)
+  2019-09-05 08:28:53,021 INFO spark.SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1161
+  2019-09-05 08:28:53,031 INFO scheduler.DAGScheduler: Submitting 2 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at map at SparkPi.scala:34) (first 15 tasks are for partitions Vector(0, 1))
+  2019-09-05 08:28:53,044 INFO scheduler.TaskSchedulerImpl: Adding task set 0.0 with 2 tasks
+  2019-09-05 08:28:53,086 INFO scheduler.TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, executor driver, partition 0, PROCESS_LOCAL, 7866 bytes)
+  2019-09-05 08:28:53,121 INFO executor.Executor: Running task 0.0 in stage 0.0 (TID 0)
+  2019-09-05 08:28:53,124 INFO executor.Executor: Fetching spark://master:39782/jars/spark-examples_2.11-2.4.4.jar with timestamp 1567643331798
+  2019-09-05 08:28:53,277 INFO client.TransportClientFactory: Successfully created connection to master/192.168.55.110:39782 after 90 ms (0 ms spent in bootstraps)
+  2019-09-05 08:28:53,280 INFO util.Utils: Fetching spark://master:39782/jars/spark-examples_2.11-2.4.4.jar to /tmp/spark-14bd209d-573a-4b64-a787-ede0367b5d6a/userFiles-0474c33a-d16d-4232-a44c-7abee336f3b4/fetchFileTemp3963728465075988607.tmp
+  2019-09-05 08:28:53,530 INFO executor.Executor: Adding file:/tmp/spark-14bd209d-573a-4b64-a787-ede0367b5d6a/userFiles-0474c33a-d16d-4232-a44c-7abee336f3b4/spark-examples_2.11-2.4.4.jar to class loader
+  2019-09-05 08:28:53,650 INFO executor.Executor: Finished task 0.0 in stage 0.0 (TID 0). 867 bytes result sent to driver
+  2019-09-05 08:28:53,652 INFO scheduler.TaskSetManager: Starting task 1.0 in stage 0.0 (TID 1, localhost, executor driver, partition 1, PROCESS_LOCAL, 7866 bytes)
+  2019-09-05 08:28:53,654 INFO executor.Executor: Running task 1.0 in stage 0.0 (TID 1)
+  2019-09-05 08:28:53,679 INFO executor.Executor: Finished task 1.0 in stage 0.0 (TID 1). 824 bytes result sent to driver
+  2019-09-05 08:28:53,698 INFO scheduler.TaskSetManager: Finished task 1.0 in stage 0.0 (TID 1) in 40 ms on localhost (executor driver) (1/2)
+  2019-09-05 08:28:53,703 INFO scheduler.TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 640 ms on localhost (executor driver) (2/2)
+  2019-09-05 08:28:53,703 INFO scheduler.TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+  2019-09-05 08:28:53,718 INFO scheduler.DAGScheduler: ResultStage 0 (reduce at SparkPi.scala:38) finished in 0.953 s
+  2019-09-05 08:28:53,722 INFO scheduler.DAGScheduler: Job 0 finished: reduce at SparkPi.scala:38, took 1.019819 s
+  Pi is roughly 3.141275706378532
+  2019-09-05 08:28:53,739 INFO server.AbstractConnector: Stopped Spark@3a80515c{HTTP/1.1,[http/1.1]}{0.0.0.0:4040}
+  2019-09-05 08:28:53,746 INFO ui.SparkUI: Stopped Spark web UI at http://master:4040
+  2019-09-05 08:28:53,753 INFO spark.MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+  2019-09-05 08:28:53,765 INFO memory.MemoryStore: MemoryStore cleared
+  2019-09-05 08:28:53,765 INFO storage.BlockManager: BlockManager stopped
+  2019-09-05 08:28:53,772 INFO storage.BlockManagerMaster: BlockManagerMaster stopped
+  2019-09-05 08:28:53,775 INFO scheduler.OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+  2019-09-05 08:28:53,779 INFO spark.SparkContext: Successfully stopped SparkContext
+  2019-09-05 08:28:53,781 INFO util.ShutdownHookManager: Shutdown hook called
+  2019-09-05 08:28:53,782 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-14bd209d-573a-4b64-a787-ede0367b5d6a
+  2019-09-05 08:28:53,783 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-178c1bbd-5bac-4a74-9b19-0b020735018f
   ```
 
 
