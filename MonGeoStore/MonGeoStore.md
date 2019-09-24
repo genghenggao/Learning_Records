@@ -836,3 +836,12 @@ public class GeoInfoController {
 在Swagger进行测试
 
 ![](IMG/微信截图_20190923224133.png)
+
+
+
+参考：
+
+《Spring Boot+Spring Cloud+Vue+Element项目实战：手把手教你开发权限管理系统》
+
+https://gitee.com/liuge1988/mango-platform
+
