@@ -113,7 +113,7 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
   - focusing web services for researchers, government, and the public.
 
-    ![](IMG/Fig. 4. Four-key-methods-of-GSW.jpg)
+    ![](IMG/Four-key-methods-of-GSW.jpg)
 
   
 
