@@ -854,7 +854,7 @@
 </html>
 ```
 
-### 9、父子组件通信-父传子中的驼峰标识
+### 9、组件通信-父传子中的驼峰标识
 
 ```html
 <!--
@@ -928,7 +928,7 @@
 </html>
 ```
 
-### 10、父子组件通信-子传父(自定义事件)
+### 10、组件通信-子传父(自定义事件)
 
 ```html
 <!--
@@ -1006,6 +1006,368 @@
 
 </script>
 </body>
+</html>
+```
+
+### 11、组件通信-父子组件通信案例
+
+```html
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: henggao
+ * @Date: 2019-10-10 19:10:35
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-10 20:00:45
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn :number1='num1' :number2='num2' @num1change='num1change' @num2change='num2change'>
+        </cpn>
+    </div>
+
+    <!-- 子组件 -->
+    <template id='cpn'>
+        <div>
+            <h2>props:{{number1}}</h2>
+            <h2>data:{{dnumber1}}</h2>
+            <!-- <input type="text" v-model='dnumber1'> -->
+            <!-- <input type="text" v-bind:value='dnumber1' @input='dnumber1 = $event.target.value'> -->
+            <input type="text" v-bind:value='dnumber1' @input='num1Input'>
+            <h2>props:{{number2}}</h2>
+            <h2>data:{{dnumber2}}</h2>
+            <!-- <input type="text" v-model='dnumber2'> -->
+            <!-- <input type="text" v-bind:value='dnumber2' @input='dnumber2 = $event.target.value'> -->
+            <input type="text" v-bind:value='dnumber2' @input='num2Input'>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        // 子组件
+        const cpn = {
+            template: 'cpn'
+        }
+
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: 1,
+                num2: 0,
+            },
+            methods: {
+                num1change(value) {
+                    // console.log(typeof value)
+                    // this.num1 = value * 1
+                    this.num1 = parseFloat(value)
+                },
+                num2change(value) {
+                    this.num2 = parseFloat(value)
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    props: {
+                        number1: Number,
+                        number2: Number
+                    },
+                    data() { //组件中的data必须是函数
+                        return {
+                            dnumber1: this.number1,
+                            dnumber2: this.number2
+                        }
+                    },
+                    methods: {
+                        num1Input(event) {
+                            //1. 将input中的value复制到dnumber1中
+                            this.dnumber1 = event.target.value;
+
+                            // 2. 为了让父组件可以修改值，发出一个事件
+                            this.$emit('num1change', this.dnumber1)
+
+                            // 3. 同时修饰dumber2的值
+                            this.dnumber2 = this.dnumber1 * 100     //改变input的值
+                            this.$emit('num2change', this.dnumber2)  //改变props的值
+                        },
+                        num2Input(event) {
+                            this.dnumber2 = event.target.value
+                            this.$emit('num2change', this.dnumber2)
+
+                            this.dnumber1 = this.dnumber2 / 100
+                            this.$emit('num1change', this.dnumber1)
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+
+
+### 12、组件通信-父子组件通信案例(watch实现)
+
+```html
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: henggao
+ * @Date: 2019-10-10 19:10:35
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-10 20:40:40
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpn :number1='num1' :number2='num2' @num1change='num1change' @num2change='num2change'>
+        </cpn>
+    </div>
+
+    <!-- 子组件 -->
+    <template id='cpn'>
+        <div>
+            <h2>props:{{number1}}</h2>
+            <h2>data:{{dnumber1}}</h2>
+            <input type="text" v-model='dnumber1'>
+            <!-- <input type="text" v-bind:value='dnumber1' @input='dnumber1 = $event.target.value'> -->
+            <!-- <input type="text" v-bind:value='dnumber1' @input='num1Input'> -->
+            <h2>props:{{number2}}</h2>
+            <h2>data:{{dnumber2}}</h2>
+            <input type="text" v-model='dnumber2'>
+            <!-- <input type="text" v-bind:value='dnumber2' @input='dnumber2 = $event.target.value'> -->
+            <!-- <input type="text" v-bind:value='dnumber2' @input='num2Input'> -->
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        // 子组件
+        const cpn = {
+            template: 'cpn'
+        }
+
+        // 父组件
+        const app = new Vue({
+            el: '#app',
+            data: {
+                num1: 1,
+                num2: 0,
+            },
+            methods: {
+                num1change(value) {
+                    // console.log(typeof value)
+                    // this.num1 = value * 1
+                    this.num1 = parseFloat(value)
+                },
+                num2change(value) {
+                    this.num2 = parseFloat(value)
+                }
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    props: {
+                        number1: Number,
+                        number2: Number
+                    },
+                    data() { //组件中的data必须是函数
+                        return {
+                            dnumber1: this.number1,
+                            dnumber2: this.number2
+                        }
+                    },
+                    watch: {
+                        dnumber1(newValue) {
+                            this.dnumber2 = this.dnumber1 * 100 //改变input的值
+                            this.$emit('num2change', this.dnumber2) //改变props的值
+                        },
+                        dnumber2(newvalue) {
+                            this.dnumber1 = this.dnumber2 / 100;
+                            this.$emit('num1change', this.dnumber1);
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
+```
+
+### 13、组件访问-父访问子-$children和-$ref
+
+```html
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: henggao
+ * @Date: 2019-10-08 10:13:23
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-11 09:08:01
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div id="app">
+    <cpn></cpn>
+    <cpn></cpn>
+    <cpn ref='aaa'></cpn>
+    <button @click='btnClick'>按钮</button>
+</div>
+
+<template id='cpn'>
+    <div>我是子组件</div>
+</template>
+<script src="../js/vue.js"></script>   
+<script>
+    const app = new Vue({
+        el:'#app',
+        data:{
+            message:'Hello,Vue!'
+        },
+        methods:{
+            btnClick(){
+                // 1. $children
+                // console.log(this.$children)
+                // this.$children[0].showMessage()
+                // this.$children[0].name
+                // for (let c of this.$children) {
+                //     console.log(c.name);
+                //     c.showMessage();
+                // }
+                // console.log(this.$children[2].name)
+
+                // 2. refs  =>对象类型，默认是一个空的对象  ref='aaa'
+                console.log(this.$refs.aaa.name)
+
+            }
+        },
+        components:{
+            cpn:{
+                template:'#cpn',
+                data(){ 
+                    return{
+                        name:'我是子组件的name',
+                    }
+                },
+                methods:{
+                    showMessage(){
+                        console.log('showMessage');
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
+### 14、组件访问-子访问父
+
+```html
+<!--
+ * @Description: 
+ * @version: 
+ * @Author: henggao
+ * @Date: 2019-10-08 10:13:23
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-11 09:30:06
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <cpn></cpn>
+    </div>
+
+    <template id='cpn'>
+        <div>
+            <h2>我是cpn组件</h2>
+            <ccpn></ccpn>
+        </div>
+    </template>
+    <template id="ccpn">
+        <div>
+            <h2>我是子组件</h2>
+            <button @click='btnClick'>按钮</button>
+        </div>
+    </template>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello,Vue!'
+            },
+            components: {
+                cpn: {
+                    template: '#cpn',
+                    data(){
+                        return{
+                            name:'我是cpn组件的name'
+                        }
+                    },
+                    components: {
+                        ccpn: {
+                            template: '#ccpn',
+                            methods: {
+                                btnClick() {
+                                    // 1.访问父组件的$parent
+                                    console.log(this.$parent);
+                                    console.log(this.$parent.name);
+
+                                    // 2. 访问根组件$root
+                                    console.log(this.$root);
+                                    console.log(this.$root.message);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
 </html>
 ```
 
