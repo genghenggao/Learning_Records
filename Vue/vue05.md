@@ -1132,4 +1132,233 @@ npm run build
 
   ![](IMG/微信截图_20191012191726.png)
 
-- 这里我使用的是webpack4.x打包以后就是压缩的，具体原因还没发现，猜测是版本的问题吧。
+- 这里我使用的是webpack4.x打包以后就是压缩的，具体原因还没发现，猜测是版本的问题吧。测试安装了1.1.1，需要的webpack是2.x||3.x。
+
+![](IMG/微信截图_20191012192112.png)
+
+
+
+## 十、webpack-dev-server搭建本地服务器
+
+- webpack提供一个可选的本地开发服务器，这个本地服务器基于Node.js，内部使用express框架，实现让浏览器自动刷新修改后的结果。
+
+### 1、安装webpack-dev-server
+
+```shell
+cnpm install webpack-dev-server --save-dev 
+```
+
+### 2、配置webpack.config.js
+
+![](IMG/微信截图_20191012193144.png)
+
+### 3、在package.json中配置
+
+- 为了方便再终端简化使用
+
+![](IMG/微信截图_20191012193637.png)
+
+### 4、运行
+
+- 在终端运行
+
+```shell
+npm run dev
+```
+
+![](IMG/微信截图_20191012193926.png)
+
+### 5、访问http://localhost:8080/
+
+![](IMG/微信截图_20191012194005.png)
+
+- 优化，添加--open命令，运行`npm run dev`，将自动打开网页http://localhost:8080/
+
+```json
+"dev":"webpack-dev-server --open" 
+```
+
+
+
+## 十一、webpack-配置文件分离
+
+### 1、安装webpack-merge
+
+```shell
+cnpm install webpack-merge --save-dev
+```
+
+### 2、在build下新建base.config.js、dev.config.js、prod.config.js
+
+将webpack.config.js文件进行分离，在src下新建build文件休夹。
+
+- base.config.js
+
+  ```js
+  /*
+   * @Description: 
+   * @version: 
+   * @Author: henggao
+   * @Date: 2019-10-11 21:05:59
+   * @LastEditors: henggao
+   * @LastEditTime: 2019-10-13 08:51:46
+   */
+  const path = require('path')
+  const webpack = require('webpack')
+  const HtmlWebpackPlugin = require('html-webpack-plugin')
+  // const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
+  
+  module.exports = {
+    entry: './src/main.js',
+    output: {
+      path: path.resolve(__dirname, 'dist'),   //动态获取绝对路径
+      filename: 'bundle.js',
+      // publicPath: 'dist/'    //涉及url，会在前面拼接dist
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          // css-loader只负责将css文件进行加载
+          // styl-loader负责将样式添加到DOM中
+          // 使用多个loader，是从右向左
+          use: ['style-loader', 'css-loader']
+        },
+        {
+          test: /\.less$/,
+          use: [{
+            loader: "style-loader" // creates style nodes from JS strings
+          }, {
+            loader: "css-loader" // translates CSS into CommonJS
+          }, {
+            loader: "less-loader" // compiles Less to CSS
+          }]
+        },
+        {
+          test: /\.(png|jpg|gif|jpeg)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                // 当加载的图片，小于limit时，会将图片编译成base64字符串形式
+                // 当加载的图片，大于limit时，需要使用file-loader模块进行加载
+                limit: 8192,
+                name: 'img/[name].[hash:8].[ext]' //命名加载到dist的文件
+              }
+            }
+          ]
+        },
+        {
+          test: /\.js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['es2015']
+            }
+          }
+        },
+        {
+          test: /\.vue$/,
+          use: ['vue-loader']
+        }
+      ]
+    },
+    resolve:{
+      // 省略扩展名配置
+      extensions:['.js','.css','.vue'],
+      // alias:别名
+      alias:{
+        'vue$':'vue/dist/vue.esm.js'
+      }
+    },
+    plugins:[
+      new webpack.BannerPlugin('最终版权归Mongeostore所有'),
+      new HtmlWebpackPlugin({
+        template:'index.html', //引用src/index.html作为模板生成dist/index.html
+      })    
+    ],
+  }
+  ```
+
+-  dev.config.js
+
+  ```js
+  /*
+   * @Description: 
+   * @version: 
+   * @Author: henggao
+   * @Date: 2019-10-11 21:05:59
+   * @LastEditors: henggao
+   * @LastEditTime: 2019-10-13 09:00:15
+   */
+  
+  const webpackMerge = require('webpack-merge')
+  const baseConfig = require('./base.config')
+  
+  module.exports = webpackMerge(baseConfig,{
+      // 下面是开发阶段用到的配置
+      devServer: {
+          contentBase: './dist', //文件夹
+          inline: true //实时刷新
+      }
+  })
+  
+  ```
+
+  
+
+- prod.config.js
+
+  ```js
+  /*
+   * @Description: 
+   * @version: 
+   * @Author: henggao
+   * @Date: 2019-10-11 21:05:59
+   * @LastEditors: henggao
+   * @LastEditTime: 2019-10-13 08:59:00
+   */
+  
+  // const UglifyjsWebpackPlugin = require('uglifyjs-webpack-plugin')
+  const webpackMerge = require('webpack-merge')
+  const baseConfig = require('./base.config')
+  
+  module.exports = webpackMerge(baseConfig,{
+      plugins:[
+          // new UglifyjsWebpackPlugin()
+        ]
+  })
+  ```
+
+### 3、删除webpack.config.js
+
+### 4、配置package.json
+
+- 指定配置文件位置
+
+![](IMG/微信截图_20191013090722.png)
+
+### 5、修改打包路径
+
+- base.config.js
+
+  ![](IMG/微信截图_20191013095119.png)
+
+### 6、打包
+
+```shell
+npm run build
+```
+
+### 7、运行
+
+```shell
+npm run dev
+```
+
+![](IMG/微信截图_20191013095425.png)
+
+http://localhost:8080/网页自动编译。
+
+![](IMG/微信截图_20191013095458.png)
