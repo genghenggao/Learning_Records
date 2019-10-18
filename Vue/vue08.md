@@ -321,3 +321,99 @@ export default {
 ![](IMG/微信截图_20191018200824.png)
 
 ![](IMG/微信截图_20191018200748.png)
+
+##### 1.6.8、对App.vue进行抽取
+
+- 在components下新建MainTabBar.vue,注意一下修改对应路径
+
+```vue
+<!--
+ * @Description: henggao_learning
+ * @version: v1.0.0
+ * @Author: henggao
+ * @Date: 2019-10-18 20:12:52
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-18 20:22:17
+ -->
+<template>
+  <tab-bar>
+    <tab-bar-item path="/home" activeColor="blue">
+      <img slot="item-icon" src="../assets/img/tabbar/home.svg" alt />
+      <img slot="item-icon-active" src="../assets/img/tabbar/home_active.svg" alt />
+      <div slot="item-text">首页</div>
+    </tab-bar-item>
+    <tab-bar-item path="/category">
+      <img slot="item-icon" src="../assets/img/tabbar/categories.svg" alt />
+      <img slot="item-icon-active" src="../assets/img/tabbar//categories_active.svg" alt />
+      <div slot="item-text">分类</div>
+    </tab-bar-item>
+    <tab-bar-item path="/cart">
+      <img slot="item-icon" src="../assets/img/tabbar/shopcart.svg" alt />
+      <img slot="item-icon-active" src="../assets/img/tabbar/shopcart_active.svg" alt />
+      <div slot="item-text">购物车</div>
+    </tab-bar-item>
+    <tab-bar-item path="/profile">
+      <img slot="item-icon" src="../assets/img/tabbar/profile.svg" alt />
+      <img slot="item-icon-active" src="../assets/img/tabbar/profile_active.svg" alt />
+      <div slot="item-text">我的</div>
+    </tab-bar-item>
+  </tab-bar>
+</template>
+
+<script>
+// 1.导入组建
+import TabBar from "./tabbar/TabBar";
+import TabBarItem from "./tabbar/TabBarItem";
+export default {
+  name: "MainTabBar",
+  components: {
+    // 2.注册组件
+    TabBar,
+    TabBarItem
+  }
+};
+</script>
+
+<style>
+</style>
+```
+
+- App.vue
+
+  ```vue
+  <!--
+   * @Description: henggao_learning
+   * @version: v1.0.0
+   * @Author: henggao
+   * @Date: 2019-10-18 14:22:29
+   * @LastEditors: henggao
+   * @LastEditTime: 2019-10-18 20:15:50
+   -->
+  <template>
+    <div id="app">
+      <!-- 3.使用组件 -->
+      <router-view></router-view>
+      <main-tab-bar></main-tab-bar>
+    </div>
+  </template>
+  
+  <script>
+  import MainTabBar from "./components/MainTabBar";
+  
+  export default {
+    name: "App",
+    components: {
+      MainTabBar
+    }
+  };
+  </script>
+  
+  <style>
+  /* 引用样式 */
+  @import "./assets/css/base.css";
+  </style>
+  
+  ```
+
+查看即可。
+
