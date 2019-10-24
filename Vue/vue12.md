@@ -1312,7 +1312,7 @@ Better-scroll 完成移动端滚动： https://ustbhuangyi.github.io/better-scro
 npm install better-scroll --save
 ```
 
-### 11.2、引用Bett-Scroll
+#### 11.2、引用Better-Scroll
 
 - src/views/category/Category.vue
 
@@ -1461,3 +1461,464 @@ export default {
 查看
 
 ![](IMG/微信截图_20191023223052.png)
+
+#### 11.3、Better-Scroll基本使用
+
+- 新建文件10-learnBS/01-BScroll的基本使用.html
+
+```html
+<!--
+ * @Description: henggao_learning
+ * @version: v1.0.0
+ * @Author: henggao
+ * @Date: 2019-10-24 08:19:25
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-24 08:55:28
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .content {
+            height: 200px;
+            background-color: red;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <ul>
+            <button class="btn">按钮</button>
+            <li>列表数据1</li>
+            <li>列表数据2</li>
+            <li>列表数据3</li>
+            <li>列表数据4</li>
+            <li>列表数据5</li>
+            <li>列表数据6</li>
+            <li>列表数据7</li>
+            <li>列表数据8</li>
+            <li>列表数据9</li>
+            <li>列表数据10</li>
+            <li>列表数据11</li>
+            <li>列表数据12</li>
+            <li>列表数据13</li>
+            <li>列表数据14</li>
+            <li>列表数据15</li>
+            <li>列表数据16</li>
+            <li>列表数据17</li>
+            <li>列表数据18</li>
+            <li>列表数据19</li>
+            <li>列表数据20</li>
+            <li>列表数据21</li>
+            <li>列表数据22</li>
+            <li>列表数据23</li>
+            <li>列表数据24</li>
+            <li>列表数据25</li>
+            <li>列表数据26</li>
+            <li>列表数据27</li>
+            <li>列表数据28</li>
+            <li>列表数据29</li>
+            <li>列表数据30</li>
+            <li>列表数据31</li>
+            <li>列表数据32</li>
+            <li>列表数据33</li>
+            <li>列表数据34</li>
+            <li>列表数据35</li>
+            <li>列表数据36</li>
+            <li>列表数据37</li>
+            <li>列表数据38</li>
+            <li>列表数据39</li>
+            <li>列表数据40</li>
+            <li>列表数据41</li>
+            <li>列表数据42</li>
+            <li>列表数据43</li>
+            <li>列表数据44</li>
+            <li>列表数据45</li>
+            <li>列表数据46</li>
+            <li>列表数据47</li>
+            <li>列表数据48</li>
+            <li>列表数据49</li>
+            <li>列表数据50</li>
+            <li>列表数据51</li>
+            <li>列表数据52</li>
+            <li>列表数据53</li>
+            <li>列表数据54</li>
+            <li>列表数据55</li>
+            <li>列表数据56</li>
+            <li>列表数据57</li>
+            <li>列表数据58</li>
+            <li>列表数据59</li>
+            <li>列表数据60</li>
+            <li>列表数据61</li>
+            <li>列表数据62</li>
+            <li>列表数据63</li>
+            <li>列表数据64</li>
+            <li>列表数据65</li>
+            <li>列表数据66</li>
+            <li>列表数据67</li>
+            <li>列表数据68</li>
+            <li>列表数据69</li>
+            <li>列表数据70</li>
+            <li>列表数据71</li>
+            <li>列表数据72</li>
+            <li>列表数据73</li>
+            <li>列表数据74</li>
+            <li>列表数据75</li>
+            <li>列表数据76</li>
+            <li>列表数据77</li>
+            <li>列表数据78</li>
+            <li>列表数据79</li>
+            <li>列表数据80</li>
+            <li>列表数据81</li>
+            <li>列表数据82</li>
+            <li>列表数据83</li>
+            <li>列表数据84</li>
+            <li>列表数据85</li>
+            <li>列表数据86</li>
+            <li>列表数据87</li>
+            <li>列表数据88</li>
+            <li>列表数据89</li>
+            <li>列表数据90</li>
+            <li>列表数据91</li>
+            <li>列表数据92</li>
+            <li>列表数据93</li>
+            <li>列表数据94</li>
+            <li>列表数据95</li>
+            <li>列表数据96</li>
+            <li>列表数据97</li>
+            <li>列表数据98</li>
+            <li>列表数据99</li>
+            <li>列表数据100</li>
+        </ul>
+    </div>
+    <script src="./bscroll.js"></script>
+    <script>
+        // 默认情况下BScroll是不可以实时的监听滚动位置
+        // probe 侦测
+        // 0，1都是不侦测实时位置
+        // 2： 在手指滚动的过程中侦测，手指离开后的惯性滚动过程不侦测
+        // 3： 只要是滚动，都侦测
+        const bscroll = new BScroll(document.querySelector('.content'), {
+            probeType: 3,
+            click: true,
+            pullUpLoad: true
+        })
+
+        bscroll.on('scroll', (position) => {
+            // console.log(position);
+        })
+
+        bscroll.on('pullingUp', () => {
+            console.log('上拉加载更多');
+            // 发送网络请求，请求更多页的数据
+
+            // 数据请求完成，并且新的数据展示出来后
+            setTimeout(() => {
+                bscroll.finishPullUp()
+
+            }, 2000)
+        })
+
+        document.querySelector('.btn').addEventListener('click', function () {
+            console.log('-----');
+        })
+    </script>
+</body>
+
+</html>
+```
+
+#### 11.4、Better-Scroll在Vue项目中的使用
+
+- 对Better-Scroll进行封装，创建src/components/common/scroll/Scroll.vue
+
+```vue
+<!--
+ * @Description: henggao_learning
+ * @version: v1.0.0
+ * @Author: henggao
+ * @Date: 2019-10-24 09:21:57
+ * @LastEditors: henggao
+ * @LastEditTime: 2019-10-24 10:06:54
+ -->
+<template>
+  <div class="wrapper" ref="wrapper">
+    <div class="content">
+      <slot></slot>
+    </div>
+  </div>
+</template>
+
+<script>
+import BScroll from "better-scroll";
+export default {
+  name: "Scroll",
+  data() {
+    return {
+      scroll: null
+    };
+  },
+  mounted() {
+    this.scroll = new BScroll(this.$refs.wrapper, {});
+  }
+};
+</script>
+
+<style>
+</style>
+```
+
+- Home.vue
+
+  ![](IMG/微信截图_20191024092705.png)
+
+设置Home.vue样式
+
+```js
+<style scoped>
+#home {
+  padding-top: 44px;
+  height: 100vh;
+  position: relative;
+}
+.home-nav {
+  background-color: var(--color-tint);
+  color: #fff;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 9;
+}
+
+.tab-control {
+  position: sticky;
+  top: 44px;
+  z-index: 9;
+}
+
+.content {
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+  top:44px;
+  bottom: 49px;
+  left: 0;
+  right: 0;
+}
+</style>
+```
+
+### 12、BackTop组件的封装和使用
+
+#### 12.1、BackTop组件的封装和使用
+
+- 新建src/components/content/backTop/BackTo.vue
+
+  ```vue
+  <template>
+    <div class="back-top">
+      <img src="~assets/img/common/top.png" alt />
+    </div>
+  </template>
+  
+  <script>
+  export default {
+      name:'BackTop',
+  };
+  </script>
+  
+  <style>
+  .back-top {
+    position: fixed;
+    right: 8px;
+    bottom: 55px;
+  }
+  
+  .back-top img {
+    width: 43px;
+    height: 43px;
+  }
+  </style>
+  ```
+
+  
+
+- Scroll.vue
+
+  ![](IMG/微信截图_20191024140205.png)
+
+- Home.vue
+
+  ![](IMG/微信截图_20191024140333.png)
+
+![](IMG/微信截图_20191024140433.png)
+
+#### 12.2、BackTop组件的显示和隐藏
+
+- Scroll.vue
+
+  ![](IMG/微信截图_20191024145505.png)
+
+- Home.vue
+
+  ![](IMG/微信截图_20191024145608.png)
+
+![](IMG/微信截图_20191024145750.png)
+
+- profile.vue
+
+  ```vue
+  <!--
+   * @Description: henggao_learning
+   * @version: v1.0.0
+   * @Author: henggao
+   * @Date: 2019-10-18 18:40:57
+   * @LastEditors: henggao
+   * @LastEditTime: 2019-10-24 14:58:57
+   -->
+  <template>
+    <div>
+      <scroll class="content">
+        <ul>
+          <li>个人信息1</li>
+          <li>个人信息2</li>
+          <li>个人信息3</li>
+          <li>个人信息4</li>
+          <li>个人信息5</li>
+          <li>个人信息6</li>
+          <li>个人信息7</li>
+          <li>个人信息8</li>
+          <li>个人信息9</li>
+          <li>个人信息10</li>
+          <li>个人信息11</li>
+          <li>个人信息12</li>
+          <li>个人信息13</li>
+          <li>个人信息14</li>
+          <li>个人信息15</li>
+          <li>个人信息16</li>
+          <li>个人信息17</li>
+          <li>个人信息18</li>
+          <li>个人信息19</li>
+          <li>个人信息20</li>
+          <li>个人信息21</li>
+          <li>个人信息22</li>
+          <li>个人信息23</li>
+          <li>个人信息24</li>
+          <li>个人信息25</li>
+          <li>个人信息26</li>
+          <li>个人信息27</li>
+          <li>个人信息28</li>
+          <li>个人信息29</li>
+          <li>个人信息30</li>
+          <li>个人信息31</li>
+          <li>个人信息32</li>
+          <li>个人信息33</li>
+          <li>个人信息34</li>
+          <li>个人信息35</li>
+          <li>个人信息36</li>
+          <li>个人信息37</li>
+          <li>个人信息38</li>
+          <li>个人信息39</li>
+          <li>个人信息40</li>
+          <li>个人信息41</li>
+          <li>个人信息42</li>
+          <li>个人信息43</li>
+          <li>个人信息44</li>
+          <li>个人信息45</li>
+          <li>个人信息46</li>
+          <li>个人信息47</li>
+          <li>个人信息48</li>
+          <li>个人信息49</li>
+          <li>个人信息50</li>
+          <li>个人信息51</li>
+          <li>个人信息52</li>
+          <li>个人信息53</li>
+          <li>个人信息54</li>
+          <li>个人信息55</li>
+          <li>个人信息56</li>
+          <li>个人信息57</li>
+          <li>个人信息58</li>
+          <li>个人信息59</li>
+          <li>个人信息60</li>
+          <li>个人信息61</li>
+          <li>个人信息62</li>
+          <li>个人信息63</li>
+          <li>个人信息64</li>
+          <li>个人信息65</li>
+          <li>个人信息66</li>
+          <li>个人信息67</li>
+          <li>个人信息68</li>
+          <li>个人信息69</li>
+          <li>个人信息70</li>
+          <li>个人信息71</li>
+          <li>个人信息72</li>
+          <li>个人信息73</li>
+          <li>个人信息74</li>
+          <li>个人信息75</li>
+          <li>个人信息76</li>
+          <li>个人信息77</li>
+          <li>个人信息78</li>
+          <li>个人信息79</li>
+          <li>个人信息80</li>
+          <li>个人信息81</li>
+          <li>个人信息82</li>
+          <li>个人信息83</li>
+          <li>个人信息84</li>
+          <li>个人信息85</li>
+          <li>个人信息86</li>
+          <li>个人信息87</li>
+          <li>个人信息88</li>
+          <li>个人信息89</li>
+          <li>个人信息90</li>
+          <li>个人信息91</li>
+          <li>个人信息92</li>
+          <li>个人信息93</li>
+          <li>个人信息94</li>
+          <li>个人信息95</li>
+          <li>个人信息96</li>
+          <li>个人信息97</li>
+          <li>个人信息98</li>
+          <li>个人信息99</li>
+          <li>个人信息100</li>
+        </ul>
+      </scroll>
+    </div>
+  </template>
+  
+  <script>
+  import Scroll from "components/common/scroll/Scroll";
+  
+  export default {
+    name: "Profile",
+    components: {
+      Scroll
+    }
+  };
+  </script>
+  
+  <style>
+  .content {
+    height: 300px;
+    background-color: red;
+    overflow: hidden;
+  }
+  </style>
+  ```
+
+  
+
+### 13、上拉加载更多
+
+P1-P169
+
+P170-P225
+
