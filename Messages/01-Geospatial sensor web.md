@@ -140,7 +140,7 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
 -   it acts as a “bridge” between geoscience observation/phenomenon and geoscience information/knowledge/decision-making. 它是地球科学观测/现象与地球科学信息/知识/决策制定之间的“桥梁”。
 
-  ![](IMG/Three webs and other key components within GSW.jpg)
+  ![](IMG/Three_webs_and_other_key_components_within_GSW.jpg)
 
 -  rich connotations 丰富的内涵
 
@@ -209,9 +209,9 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
   - focusing web services for researchers, government, and the public.
 
-    <img src="IMG/sensor-web- service-combination-scenario.jpg"  />
+    ![](IMG/sensor_web_ service_combination_scenario.jpg)
   
-    ![](IMG/Four-key-methods-of-GSW.jpg)
+    ![](IMG/Four_key_methods_of_GSW.jpg)
   
   
 
