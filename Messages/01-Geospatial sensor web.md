@@ -209,7 +209,7 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
   - focusing web services for researchers, government, and the public.
 
-    ![](IMG/sensor_web_ service.jpg)
+    ![](IMG/sensor_web_service.jpg)
   
     ![](IMG/Four_key_methods.jpg)
   
