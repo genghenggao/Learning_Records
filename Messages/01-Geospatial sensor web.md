@@ -1,4 +1,4 @@
-# 2019.10
+# 2019.10-11
 [TOC]
 
 ## A framework for real time end to end monitoring and big data oriented management of smart environments
@@ -326,6 +326,161 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
 
 ## [Distributed Geoscience Algorithm Integration Based on OWS Specifications: A Case Study of the Extraction of a River Network](https://www.mdpi.com/2220-9964/8/1/12/htm)  
+
+### 1、Highlights
+
+- OGC web service; 
+- geospatial service; 
+- geoscience algorithm; 
+- distributed algorithm integration 
+
+### 2、Keywords
+
+### 3、Transactions
+
+-  Open Geospatial Consortium web service (OWS)   开放式地理空间联盟Web服务
+-  encapsulated  封装的
+-  specifications 名词：规格，规范，格式
+
+### 4、Quotations&Comments
+
+- The pivotal issue that needs to be addressed is the identification of a method to effectively combine geoscience algorithms in a distributed environment to promote cooperation. 需要解决的关键问题是确定一种在分布式环境中有效组合地球科学算法以促进合作的方法。
+
+- Many researchers utilize distributed computing technology to solve these challenges and they have achieved positive results [[1](https://www.mdpi.com/2220-9964/8/1/12/htm#B1-ijgi-08-00012),[2](https://www.mdpi.com/2220-9964/8/1/12/htm#B2-ijgi-08-00012),[3](https://www.mdpi.com/2220-9964/8/1/12/htm#B3-ijgi-08-00012)].  
+
+- In the study, a management mechanism for geoscience algorithms is designed and implemented, which facilitates the registration of, search for, and invocation of the distributed geoscience algorithms.   Geoscience algorithm integration is implemented using an XML-based script. 
+
+- As early as 1983, Blanning proposed the problem of managing various types of geoscience models and algorithms in the form of a document and proposed the concept of the model library, which managed models and algorithms with a defined model library query language (MQL) [[4](https://www.mdpi.com/2220-9964/8/1/12/htm#B4-ijgi-08-00012)]. 
+
+- Driven by network technology, web service platforms have become a new solution for the integration of network applications. Web service technologies have been widely used to construct distributed, modular applications and service-oriented applications. 
+
+- Service-oriented applications have become the direction of new geoscience developments. Geospatial application activities are moving from a professional field to a networked, socialized, and popular service that is being accepted by various domain experts and even nonprofessionals [[7](https://www.mdpi.com/2220-9964/8/1/12/htm#B7-ijgi-08-00012)].  
+
+- The emergence of common web services also enables geospatial data sharing and algorithm interoperability, and, when compared with other distributed architectures, the geoscience algorithm sharing based on a common service-oriented architecture (SOA) has obvious advantages. 
+
+- To meet the requirements of distributed geoscience data and algorithm sharing, the International Organization for Standardization/Technical Committee (ISO/TC 211) and the Open Geospatial Consortium (OGC) formulated a series of geographical data services and processing service standards, including a Web Map Service (**WMS**), Web Feature Service (**WFS**), Web Coverage Service (**WCS**), and Web Processing Service (**WPS**), to standardize data transmission and processing interfaces. 
+
+-  **Figure 1.** The architecture of distributed geoscience algorithm integration. 
+
+  ![](IMG/ijgi-08-00012-g001.png)
+
+-  **Table 1.** Distributed geoscience service classification system. 
+
+  ![](IMG/微信截图_20191112090310.png)
+
+-  Experiment
+  
+  - Four server host virtual machines (VMs) are launched in Beijing, Shanghai, Guangzhou, and Hong Kong, as shown in [Figure 7](https://www.mdpi.com/2220-9964/8/1/12/htm#fig_body_display_ijgi-08-00012-f007)a. Each VM is equipped with four virtual CPUs of 2.2 GHz, 8-GB RAM, and a 20 Mb/s network.   To test the feasibility and performance of the proposed method around the world, the test environment is also built on Alibaba Cloud, which is a cloud service that is available around the world. Four server host VMs are launched in London (UK), Silicon Valley (USA), Beijing (CHN), and Sydney (AUS), as shown in [Figure 7](https://www.mdpi.com/2220-9964/8/1/12/htm#fig_body_display_ijgi-08-00012-f007)b. Each VM is equipped with four virtual CPUs of 2.5 GHz, 8-GB RAM, and 40G ROM. 
+- 
+
+### 5、Methods
+
+### 6、Technologies
+
+### 7、Tasks
+
+### 8、Overview
+
+
+
+## [SOVAS: a scalable online visual analytic system for big climate data analysis](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073)
+
+### 1、Highlights
+
+
+
+### 2、Keywords
+
+- big spatiotemporal data, 
+- query analytics
+- climate
+- Hadoop
+
+### 3、Transactions
+
+### 4、Quotations&Comments
+
+- Meanwhile, various parallel computing paradigms have been developed to manipulate massive spatiotemporal data from the traditional Cluster and Grid Computing, to Cloud Computing and heterogeneous CPU/GPU Computing (Schadt *et al*. [2010](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Li *et al*. [2013a](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Huang *et al*. [2013b](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Yang *et al*. [2017](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Hu *et al*. [2018a](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#)).  
+
+- While these online systems can integrate and analyze distributed geospatial data, most of them only support fixed user interface with predefined functions. 
+
+- high performance computing using MapReduce parallel computing framework (Li *et al*. [2016](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#)), 
+
+- SOVAS adopts a layer-based architecture that seamlessly synthesizes big spatiotemporal data management, parallel computing, spatiotemporal query analytics, visualization, and spatial web portal in a unified environment ([Figure 1](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#F0001)).  
+
+-  **Figure 1.** **Overall system architecture.** 
+
+  <img src="IMG/tgis_a_1605073_f0001_c.jpeg" style="zoom:50%;" />
+
+-  
+
+### 5、Methods
+
+### 6、Technologies
+
+### 7、Tasks
+
+### 8、Overview
+
+
+
+## [Developing a web-based spatial decision support system for geothermal exploration at the Olkaria geothermal field](https://www.tandfonline.com/doi/full/10.1080/17538947.2017.1284909)
+
+### 1、Highlights
+
+### 2、Keywords
+
+### 3、Transactions
+
+### 4、Quotations&Comments
+
+### 5、Methods
+
+### 6、Technologies
+
+### 7、Tasks
+
+### 8、Overview
+
+
+
+## AkvaGIS: An open source tool for water quantity and quality management
+
+### 1、Highlights
+
+### 2、Keywords
+
+### 3、Transactions
+
+### 4、Quotations&Comments
+
+### 5、Methods
+
+### 6、Technologies
+
+### 7、Tasks
+
+### 8、Overview
+
+## [Modelling the Distribution and Quality of Sand and Gravel Resources in 3D: a Case Study in the Thames Basin, UK](https://link.springer.com/article/10.1007%2Fs10666-018-9650-2)
+
+### 1、Highlights
+
+### 2、Keywords
+
+### 3、Transactions
+
+### 4、Quotations&Comments
+
+### 5、Methods
+
+### 6、Technologies
+
+### 7、Tasks
+
+### 8、Overview
+
+## [Big Geo-Data Handling Based on Parallel and Distributed System’s Strategies](https://link.springer.com/chapter/10.1007/978-3-319-51629-5_4)
 
 ### 1、Highlights
 

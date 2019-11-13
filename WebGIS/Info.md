@@ -12,5 +12,5 @@
 
 - 服务发布
   - ArcMap -> Server ->API
-- 
+-  矢量地图会按照一定的格式来表达，比如常见的`GeoJSON`，`TopoJSON`，`GML`，`KML`，`ShapeFile`等等 
 
