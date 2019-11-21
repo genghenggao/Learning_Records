@@ -15,11 +15,19 @@
 
 ## 二、文件格式
 
-- netCDF
+-  CSV (comma-separated values) 
 - GeoTIFF
+- NetCDF (Network Common Data Form) 
+- HDF (Hierarchical Data Format)  
+
+
 
 ## 三、
 
 - Google Earth
 - NASA WorldWind
 - Cesium
+- web-based visualization tools 
+  -  Data-Driven Documents 
+  -   Google Visualization APIs 
+

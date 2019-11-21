@@ -502,3 +502,20 @@ ssh-copy-id slave3
 
 
 
+## 八、CentOS问题
+
+### 1、问题描述
+
+- 只针对平配好以后突然出现问题
+
+- 之前好好的，突然master、slave1、slave2节点ping不通网络、windows主机，相互也ping不通。
+- FinalShell、XShell连接不了
+
+### 2、解决方法
+
+- windows桌面：右键计算机——管理——服务和应用程序——服务，找到VMware DHCP Service与VMware NAT Service并确保已开启 
+
+![](IMG/微信截图_20191120144519.png)
+
+我的问题在这里解决了。原因分析：可能是使用电脑管家加速时关闭了。
+

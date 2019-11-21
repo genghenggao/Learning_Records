@@ -398,6 +398,8 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
 ### 3、Transactions
 
+- back-end parallel processing and front-end data visualization. 
+
 ### 4、Quotations&Comments
 
 - Meanwhile, various parallel computing paradigms have been developed to manipulate massive spatiotemporal data from the traditional Cluster and Grid Computing, to Cloud Computing and heterogeneous CPU/GPU Computing (Schadt *et al*. [2010](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Li *et al*. [2013a](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Huang *et al*. [2013b](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Yang *et al*. [2017](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#), Hu *et al*. [2018a](https://www.tandfonline.com/doi/full/10.1080/13658816.2019.1605073#)).  
@@ -412,9 +414,20 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
   <img src="IMG/tgis_a_1605073_f0001_c.jpeg" style="zoom:50%;" />
 
--  
+
+- 
 
 ### 5、Methods
+
+- The web portal is developed with Javascript and HTML by utilizing a set of third-party libraries, including jQuery, Bootstrap for interface, as well as D3.js, Google Chart API, Google Maps APIs, and Web WorldWind for visualizations. 
+
+- More computer nodes can be added without the need of modifying the system. We observed that most queries were finished within several minutes when analyzing the two terabytes of climate data using our 13-node cluster. 
+
+-  Figure 14. Performance comparison for calculating global mean with different mechanisms. 
+
+  ![](IMG/tgis_a_1605073_f0014_c.jpeg)
+
+- 
 
 ### 6、Technologies
 
@@ -430,9 +443,26 @@ MongoDB [[20\]](https://www.sciencedirect.com/science/article/pii/S0743731518308
 
 ### 2、Keywords
 
+- GIS
+- SDSS
+- geothermal
+- a web based 
+- multi-criteria decision analysis
+
 ### 3、Transactions
 
+- State of the art 最先进的
+- multidisciplinary 多学科的
+- electrical resistivity 电阻率
+-  Pressure data  
+-  Gravity surveys 
+- DEM
+  -  In order to measure slope information, a DEM was used. 
+- Presentation tier展示层
+
 ### 4、Quotations&Comments
+
+- An extensible system is one that can be modified by changing or adding features (Miller [2004](https://www.tandfonline.com/doi/full/10.1080/17538947.2017.1284909#)). 
 
 ### 5、Methods
 
