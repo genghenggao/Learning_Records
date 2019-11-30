@@ -82,3 +82,10 @@ public class GeoFiles {
 
 ```
 
+
+
+
+
+## 三、Records
+
+**注意：当使用`MongoRepositories`时，可能有些`MongoRepositories`类不在默认的包路径(启动类路径)下，可使用`@EnableMongoRepositories`的`basePackages`需要扫描的路径信息。若都在默认的包路径下，可以不加此注解的。** 

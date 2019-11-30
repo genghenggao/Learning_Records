@@ -893,7 +893,7 @@ mongo --port 20000
     mongod -f /usr/local/mongodb/conf/shard1.conf
     ```
 
-  - shard2 server（**在节、slave1、slave2、slave3配置**）
+  - shard2 server（**在节点slave1、slave2、slave3配置**）
 
     ```shell
     mongod -f /usr/local/mongodb/conf/shard2.conf
