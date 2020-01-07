@@ -113,7 +113,7 @@ public class UserController {
         if (user == null) {
             System.out.println(user);
             User usero = new User("##errors##", "1234");
-            model.addAttribute("user", usero);
+            model.addAttribute("user", user);
         }
 
         return "index";

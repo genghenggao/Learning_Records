@@ -231,6 +231,10 @@ https://blog.csdn.net/qw12312312/article/details/82288438
 
 [基于vue-simple-uploader封装文件分片上传、秒传及断点续传的全局上传插件](https://www.cnblogs.com/xiahj/p/vue-simple-uploader.html)
 
+[Java Spring boot + Mongodb + Vue +阿里云OSS 实现的电子相册](https://www.jianshu.com/p/6a9f0564f550)
+
+### 5、
+
 ## 三、注意点
 
 ### 1、GridFSDBFile改为GridFSFile

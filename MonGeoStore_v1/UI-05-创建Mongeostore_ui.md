@@ -1,4 +1,4 @@
-# MogGeoStore_UI
+# MogGeoStore
 
 [TOC]
 
