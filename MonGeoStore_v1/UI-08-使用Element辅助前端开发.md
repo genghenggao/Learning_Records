@@ -177,7 +177,7 @@ export default {
 
 ### 3、设置背景
 
-在 `src\assets、img` 文件夹下，命名为 `background.jpg` 这个文件夹里的图片会被自动转成 base64。
+在 `src\assets\img` 文件夹下，命名为 `background.jpg` 这个文件夹里的图片会被自动转成 base64。
 
 为了使用背景图片，我在 `<el-from>` 标签的外又添加了一个父标签 `<body>`，id 设置为 `poster`，并在 `<style>` 中添加如下内容
 
