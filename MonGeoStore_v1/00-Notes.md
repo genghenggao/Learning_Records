@@ -285,3 +285,39 @@ gridFSDBFile.writeTo(response.getOutputStream());
 
 - **正向代理**与**反向代理**
 
+
+
+## 七、Vue知识点
+
+### 1、Login不需要导航栏
+
+登录页是不需要导航栏和侧边栏的，那么就需要规避掉登录页。
+
+这时，就可以采用keep-alive结合$route.meta来实现这个功能。keep-alive 是 Vue 内置的一个组件，可以使被包含的组件保留状态，或避免重新渲染。$route.meta则可以选择让需要的页面才展示。
+
+参考：https://blog.csdn.net/Mr_EvanChen/article/details/80847724
+
+### 2、动态改变左侧导航显示内容
+
+点击顶部导航栏动态改变左侧导航显示内容
+
+https://blog.csdn.net/qq_42589862/article/details/90732617
+
+### 3、views与components
+
+虽然都是按组件方式写，但是作用功能区别很明显啊，`views`跟`components`怎么会区分不了呢。
+你写个首页`Index.vue`这肯定是个 **页面views**
+你写个首页头`IndexHeader.vue`这就是个 **组件components**
+
+如果项目中是否引入了`vue-router`，简单理解成`vue-router`使用的组件是`views`就行了。
+
+
+
+## 八、学习
+
+- 八叉树
+
+- ECharts
+
+- 三维地震数据segy数据显示（java使用VTK）：https://blog.csdn.net/yanfeng1022/article/details/89553935
+
